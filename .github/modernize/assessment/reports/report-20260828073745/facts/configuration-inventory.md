@@ -65,13 +65,13 @@ The repository has a compact configuration surface: `package.json`, `package-loc
 | `MONGO_USER` | Database username | Environment variable and local `nodemon.json` value `[MASKED]` |
 | `MONGO_PWD` | Database password | Environment variable and local `nodemon.json` value `[MASKED]` |
 | `STRIPE_KEY` | Payment API key | Environment variable and local `nodemon.json` value `[MASKED]` |
-| SMTP username | Email service username | Hardcoded in `controllers/auth.js` value `[MASKED]` |
-| SMTP password | Email service password | Hardcoded in `controllers/auth.js` value `[MASKED]` |
+| SMTP username | Email service username | Literal hardcoded credential in `controllers/auth.js` value `[MASKED]`; high-priority externalization candidate |
+| SMTP password | Email service password | Literal hardcoded credential in `controllers/auth.js` value `[MASKED]`; high-priority externalization candidate |
 | Express session secret | Session signing secret | Hardcoded in `app.js` value `[MASKED]` |
 
 ### Secrets Provisioning Workflow
 
-For hosted execution, secrets are expected to be injected as environment variables before the Node.js process starts. Local debug execution loads values from `nodemon.json`. No managed identity, cloud secret store, encrypted property mechanism, or CI-based secret provisioning workflow was detected. The application binds database and Stripe secrets during module initialization and uses SMTP credentials when constructing the mail transporter.
+For hosted execution, secrets are expected to be injected as environment variables before the Node.js process starts. Local debug execution loads values from `nodemon.json`. No managed identity, cloud secret store, encrypted property mechanism, or CI-based secret provisioning workflow was detected. The application binds database and Stripe secrets during module initialization and uses literal hardcoded SMTP credentials when constructing the mail transporter; these SMTP values should be moved to environment variables or a managed secret store before production use.
 
 ## Feature Flags
 
