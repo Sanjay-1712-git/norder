@@ -1,4 +1,4 @@
-Checking /home/runner/work/norder/norder/package.json
+Checking package.json
 
 Patch   Backwards-compatible bug fixes
  pug  ^3.0.0  →  ^3.0.4
@@ -29,4 +29,4 @@ Major   Potentially breaking API changes
 Major version zero   Anything may change
  pdfkit  ^0.11.0  →  ^0.20.1
 
-Run ncu --format group --packageFile /home/runner/work/norder/norder/package.json -u to upgrade /home/runner/work/norder/norder/package.json
+Run ncu --format group --packageFile package.json -u to upgrade package.json
