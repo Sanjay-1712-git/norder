@@ -60,6 +60,14 @@ The repository has a compact configuration surface: `package.json`, `package-loc
 
 ## Secrets & Sensitive Configuration
 
+### Critical Security Findings
+
+| Finding | Severity | Evidence | Recommended Action |
+|---|---|---|---|
+| Hardcoded session secret | High | `app.js` configures a literal session signing secret | Move the session secret to an environment variable or managed secret store and rotate the deployed value |
+| Hardcoded SMTP credentials | High | `controllers/auth.js` constructs the mail transporter with literal credentials | Move SMTP username and password to environment variables or a managed secret store and rotate the exposed credentials |
+| Local debug secrets committed in configuration | High | `nodemon.json` contains local MongoDB and Stripe secret values | Replace local secret values with documented placeholders or untracked local environment files and rotate exposed credentials |
+
 | Secret Reference | Type | Storage (masked) |
 |---|---|---|
 | `MONGO_USER` | Database username | Environment variable and local `nodemon.json` value `[MASKED]` |
